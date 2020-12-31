@@ -1,0 +1,299 @@
+body {
+    /* background: #fff4d1; */
+	background: #fff4d1;
+    font-family: "宋体";
+}
+
+a{
+	color: #000;
+}
+.wrap{
+	width: 900px;
+	margin: 0 auto;
+	background: #fff;
+}
+.header{
+
+	height: 140px;
+
+    background: url(../images/jjjczpic.jpg) repeat-x top center #fff;
+background-size: 100%;
+}
+/*
+.titpic{
+    display: flex;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+} */
+.nav{
+
+	height: 35px;
+	background-color:#e62902 ;
+}
+.nav ul{
+	display: flex;
+	flex-wrap: wrap;
+}
+.nav ul li{
+	line-height: 35px;
+	font-size: 18px;
+	padding: 0 10px;
+	border-right: 1px #ccc solid;
+}
+.nav ul li a{
+	color: #fff;
+	font-weight: 400;
+	display: block;
+	width: 100%;
+}
+.nav ul li a:hover{
+	color: orange;
+}
+
+.nav ul li span{
+	border: 1px #ccc solid;
+}
+
+/* 头部完成 */
+.box{
+	/* height: 300px; */
+}
+.box-nav{
+	width: 420px;
+	height: 300px;
+	float: left;
+	box-sizing: border-box;
+    padding: 5px;
+    margin-left: 5px;
+
+}
+
+.banner{ width: 100%; height: 100%; position: relative; overflow: hidden;}
+.banner * { margin: 0; padding: 0; list-style-type: none; text-decoration: none; }
+.banner .list{ width: 1000%; height: 100%; position: absolute; left: -100%; overflow: hidden; }
+.banner .list.active{ transition: 1s; }
+.banner .list li{ width: 10%; height: 100%; position: relative; float: left; }
+.banner .list li img{ width: 100%; height: 100%; border: none; display: block; transition: 1s; }
+.banner .list li img:hover{ transform: scale(1.02); }
+.banner .list li p{ position: absolute; bottom: 0; line-height: 35px; background: rgba(0,0,0,.8); width: 100%; box-sizing: border-box; padding-right: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #fff; font-size: 14px; text-indent: 10px; }
+.banner .listIndex{ position: absolute; right: 10px; bottom: 13px; height: 10px; z-index: 10;}
+.banner .listIndex li{ width: 10px; height: 100%; background: #999; display: inline-block; margin-right: 8px; cursor: pointer; vertical-align: top; border-radius: 50%;}
+.banner .listIndex li.active{ background: #FFF; }
+/*轮播图样式结束*/
+
+.gzdt{
+	float: left;
+	width: 475px;
+    padding: 5px;
+    padding-right: 14px;
+	box-sizing: border-box;
+}
+.gzdt .chead{
+	position: relative;
+	height: 38px;
+	padding-left: 10px;
+	margin-bottom: 5px;
+	border-bottom: 1px #ccc solid;
+}
+.gzdt .chead span{
+	float: left;
+    position: relative;
+    padding-left: 15px;
+    font-weight: bold;
+    height: 38px;
+    font-size: 16px;
+    color: #e62902;
+    line-height: 38px;
+}
+.gzdt .chead a{
+	float: right;
+    position: relative;
+    padding-right: 15px;
+    height: 38px;
+    font-size: 14px;
+    color: #999;
+    line-height: 38px;
+}
+.gzdt .chead span:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 3px;
+    height: 16px;
+    background: #e62902;
+}
+
+.gzdt-text ul{
+	display: flex;
+    flex-direction:column;
+    
+}
+
+.gzdt-text ul li{
+	font-size: 14px;
+	height: 42px;
+	line-height: 42px;
+	padding-left: 10px;
+	vertical-align: bottom;
+}
+.gzdt-text ul li:hover a{
+	color: #e62902;
+}
+.gzdt-text .ddd{
+	border: 1px #ccc solid;
+	margin-right: 10px;
+}
+
+.card{
+    float: left;
+    margin: 20px 0 0 15px;
+    width: 430px;
+}
+/* .card:nth-child(3n+1) {
+    margin-left: 0;
+} */
+.card .chead {
+    position: relative;
+    height: 38px;
+}
+.card .chead span {
+    float: left;
+    position: relative;
+    padding-left: 15px;
+    font-weight: bold;
+    height: 38px;
+    font-size: 16px;
+    color: #e62902;
+    line-height: 38px;
+}
+.card.skin2 .chead span {
+    padding: 0 15px;
+    height: 35px;
+    background: linear-gradient( #dbecfc 0%, #fff 50%);
+    line-height: 30px;
+    border-top: #e62902 3px solid;
+    border-right: #eee 1px solid;
+}
+.card .chead span:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 3px;
+    height: 16px;
+    background: #e62902;
+}
+.card.skin2 .chead span:before {
+    display: none;
+}
+.card.skin2 .chead {
+    height: 37px;
+    background-color: #f5f5f5;
+    border-top: #eee 1px solid;
+    border-right: #eee 1px solid;
+    border-left: #eee 1px solid;
+}
+.card .chead a {
+    float: right;
+    position: relative;
+    padding-right: 15px;
+    height: 38px;
+    font-size: 14px;
+    color: #999;
+    line-height: 38px;
+}
+.card .cbody {
+    padding: 10px 0;
+    height: 180px;
+    border: #eee 1px solid;
+}
+
+.alink a {
+    display: block;
+    overflow: hidden;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #333;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all .2s;
+}
+.alink a:before {
+    display: inline-block;
+    content: "";
+    margin: -2px 8px 0 0;
+    width: 4px;
+    height: 4px;
+    background: #333;
+    border-radius: 4px;
+    vertical-align: middle;
+    transition: all .2s;
+}
+.alink a:hover {
+    color: #e62902;
+}
+.alink-jgsz li{
+	border: 1px solid #DCDCDC;
+    line-height: 48px;
+    text-indent: 40px;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	margin-top: 10px;
+	background: #F5F5F5 url(http://jtj.pds.gov.cn/images/icon/tubiaow.png) no-repeat 16px center;
+	width: 160px;
+}
+.alink-jgsz li:hover{
+	background: #ccc url(http://jtj.pds.gov.cn/images/icon/tubiaow1.png) no-repeat 16px center;
+
+}
+.alink-jgsz li:hover a{
+	color: #000;
+}
+.alink-jgsz,.alink-tq{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.alink-jgsz a:before,.alink-tq a:before{
+	content:none;
+}
+.alink-tq li{
+	border: 1px solid #DCDCDC;
+    line-height: 48px;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	margin-top: 20px;
+	width: 150px;
+	text-align: center;
+	background:#f5f5f5;
+
+}
+.alink-tq li:hover{
+	background: #ccc;
+}
+.alink-tq span{
+	margin-right: 5px;
+}
+
+/* 底部 */
+.footer-cent{
+    margin-top: 10px;
+    text-align: center;
+    line-height: 20px;
+    padding: 20px 0;
+    border-top: 2px #e62902  solid;
+}

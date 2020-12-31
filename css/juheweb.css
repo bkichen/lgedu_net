@@ -1,0 +1,11 @@
+ 
+/*
+ *   Author: 青涩牧童
+ *   version：1.1.0
+ *   Date：2016年02月23日 平顶山市人民政府专用
+ */
+.bottom_tools{position:fixed;z-index:1070;right:100px;bottom:40px;}
+.bottom_tools>*{font:0/0 a;display:block;margin-top:5px;color:transparent;border:0;background-color:#FFF;text-shadow:none}
+.qr_img{position:absolute;top:-189px;left:-183px;display:none;}
+#scrollUp{width:45px;height:45px;background-image:url(../images/backgrounds.32.png);background-position:-54px -53px;display:none;}
+#scrollUp:hover{background-image:url(../images/backgrounds.32.png);background-position:-100px -53px}

@@ -1,0 +1,43 @@
+ /*
+ *   Author: 青涩牧童
+ *   version：1.1.0 bottom
+ *   Date：2016年01月15日 平顶山市人民政府专用
+ */
+/*************************************************************************************************************/
+/**栏目页底部**/
+#bottom{width:100%; height:155px; float:left; background-color:#f5f5f5; border-top:#cc0001 4px solid;}
+.bottom_bt{ width:1100px; height:155px; margin:0px auto; padding:20px 0px 0px 50px;box-sizing: border-box;}
+.bottom_bt_left{ width:65px; height:105px; float:left; margin-right:30px;margin-top: 30px;}
+.bottom_bt_right{ width:450px; height:135px; float:left; font-size:13px; line-height:40px; color:#7f7f7f}
+.bottom_bt_ewmwx,.bottom_bt_ewmwb{width:105px;height:105px;float:left;margin: 5px 25px;}
+.bottom_bt_ewmwx{background:url(../images/weixin.jpg) no-repeat;background-size: contain;}
+.bottom_bt_ewmwb{background:url(http://www.pds.gov.cn/images/784523112.png) no-repeat;background-size: contain;}
+.jiucuolin{width:110px; height:55px; margin-top:35px; float:right; background:#F81014; border-radius:5px; margin-right:10px;}
+
+/*************************************************************************************************************/
+/**控制浏览器滚动条样式-2016年11月8号晚上-青涩牧童**/
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px
+}
+
+::-webkit-scrollbar-button:vertical {
+	display: none
+}
+
+::-webkit-scrollbar-corner,::-webkit-scrollbar-track {
+	background-color: #e2e2e2
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 0;
+	background-color: rgba(0,0,0,.3)
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+	background-color: rgba(0,0,0,.35)
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+	background-color: rgba(0,0,0,.38)
+}

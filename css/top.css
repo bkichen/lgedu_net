@@ -1,0 +1,98 @@
+
+/*
+ *   Author: 青涩牧童
+ *   version：1.1.0 top
+ *   Date：2016年03月26日 平顶山市人民政府专用
+ */
+ /**全局定义区**/
+*{font-family:Microsoft Yahei,"微软雅黑","宋体","Arial Narrow",HELVETICA;}
+html{height: 100%; }
+input{border:0px;}
+#moquu_top{ background: url(../images/sbtn1.png) 0 -280px; }
+#moquu_top:hover {background:url(../images/sbtn1.png) -66px -280px}
+body,div,ul,ol,li{margin:0px; padding:0px;}
+img{border:0;vertical-align:middle;}
+ul,ol,li{ list-style:none; }
+a{ text-transform:none; text-decoration:none; color:#666; cursor:pointer;}
+a:hover{text-decoration:none; cursor:pointer; color:#000; text-shadow: 0 1px 1px rgba(0,0,0,0.4);}
+table, td {border-collapse: collapse; }
+select{ color:#666;}
+input{cursor:pointer;}
+/*************************************************************************************************************/
+/**最外层定义区**/
+#all{ width:100%; height:auto; float:left; background:#f2f2f2 url(../images/backimg/2.jpg)  fixed -100px top no-repeat;background-size: auto 254px;}
+
+/*************************************************************************************************************/
+#center{ width:1100px; height:auto; margin:0px auto;}/**中间内容公共定义区**/
+.center_b{ width:100%; height:auto; float:left; background:#FFF;}/**中间内容区**/
+
+/**栏目内容页-头部全局定义区**/
+#top{ width:100%; height:254px; float:left;}
+.top_t{ width:100%; height:254px; margin:0px auto; z-index:9999; }
+.top_tt{ width:100%; height:100px; float:left; padding:46px 0px;}
+.Logo{ width:462px; height:100px; float:left;}/**Logo定义区**/
+.Logo img{width:100%}
+
+/**Logo/天气和搜索样式**/
+#top_center{width:520px; height:250px; padding-top:30px;padding-left:480px; float:left; background:url(http://www.pds.gov.cn/images/top.png) 0px 30px no-repeat;}
+.weather{ width:203px;height:100px; float:left; margin:15px 15px 0px 15px; }
+.search{width:365px;height:100px; float:right; margin-top:36px; }
+.word{width:254px; height:37px; float:left; border:none; background:#fff;padding-left: 3px;}
+.word:hover{border:none; background:#fff;}
+.submit{ width:60px; height:37px; line-height:37px; background:#3366cc; font-size:15px;  cursor:pointer; color:#FFFFFF; border:none; outline:medium; border-top-right-radius: 2px;border-bottom-right-radius: 2px;}
+.m_srsc{width:100%;height:35px; line-height:35px; font-size:13px;}
+.m_srsc a{margin-right:10px; color:#000}
+#m_qzjs{width:50px; height:37px;float:left;border-top-left-radius: 2px;border-bottom-left-radius: 2px;background:#fff;border-right: 1px solid #f5f5f5;}
+.statehd img{width:140%;margin-top:20px;}
+.statehdw{float:right;margin:0;}
+
+/**一级菜单导航栏区-nav区**/
+.top_tb{ width:100%; height:52px; float:left; margin-bottom:10px;}
+.top_tb .nav_d{ height:48px; border-top:4px solid #cb0101; background:#efefef; line-height:48px;}
+.top_tb ul li{ width:111px; height:52px; float:left; line-height:52px; background:#FFF; text-align:center;}
+.top_tb ul li a{ color:#656565; font-size:15px;}
+.top_tb .nav_date{ font-size:13px; height:52px; line-height:52px; width:212px; color:#cd0104;}
+
+#top_bar{ width:100%; height:35px;background:#4ba9f8; position:fixed; left:0px; top:0px;z-index:9999; font-size:13px; line-height:35px; }
+#top_bar a{font-size:13px; line-height:35px; color:#000; text-decoration:none; margin:0px 5px;}
+.top_all{width:1100px; height:35px; margin:0px auto;}
+.a-top{ width:700px; height:35px; float:left; text-align:left;}
+.b-top{ width:400px; height:35px; float:right; text-align:right;}
+.ipv6_case{float:left;}
+#top_bar ul{margin:0px; padding:0px; float:right;}
+#top_bar ul li{ text-align:right; height:35px;}
+
+/*************************************************************************************************************/
+/**无障碍浏览样式**/		
+.accessible-body{position: fixed;z-index: 10;width: 100%; min-width: 1000px;text-align: right; padding: 4px 0;	font-size: 14px;background-color: #4ba9f8 !important;border-bottom: 1px solid #ddd;}
+.accessible-body span{display: inline-block;padding: 0 10px;margin-left: 6px;border: 1px solid #ccc;border-radius: 5px;background-color: #f3f3f3 !important;line-height: 24px; color: #444 !important;cursor: pointer;}
+
+.main-wrap{	margin:0px auto;width:1000px;}
+.accessible-wrap{ display: none; /* margin-top: 35px; */position: fixed; z-index: 10000;}
+.box-leadermail > span {display: block;padding: 0 0 0 25px;line-height: 56px;color: #888;}
+.box-leadermail > a {float: right;display: block;padding-right: 25px;font-size: .75em;line-height: 56px;color: #888;font-family: Simsun;}
+.box-leadermail > a:hover {text-decoration: underline;}
+.lm-table thead td {text-align: center;font-size: 12px;color: #888;line-height: 42px;border-top: 1px solid #eee;border-bottom: 1px solid #eee;background-color: #f4f4f4;}
+.lm-table {table-layout: fixed;width: 100%;}
+.lm-table thead td:first-child {text-align: left;padding-left: 25px;}
+
+.lm-table tbody td {text-align: center;font-size: .75em;color: #888;line-height: 32px;}
+.lm-table tbody td a {color: #888;text-decoration: none;}
+.lm-table tbody td a:hover {text-decoration: underline;}
+.lm-table tbody td:first-child {text-align: left;font-size: .875em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;padding-left: 25px;}
+/**无障碍浏览样式**/
+/**优化营商环境**/
+ .ztwrap{ border: 1px solid #e3e3e3; margin: 10px 0px; padding: 0 10px; color: #666; font-size: 16px;  }
+ .ztjj p{ line-height: 35px; text-indent: 2em; margin-bottom: 10px; }
+ .slfw-title{ text-align: center; font-size: 21px; line-height: 50px; color: #666; margin-bottom:10px; background: #f5f5f5;padding-left: 10px;border-radius: 3px;}
+ .slfw .slfw-title{ text-align:left;}
+ .slfw ul li{ line-height: 30px; padding: 10px 10px; font-size: 15px; margin-bottom:10px;}
+ .slfw ul li span{ padding: 1px 6px; background: rgb(92,180,230); border-radius: 3px; color: #fff; margin-right: 8px; margin-top: 5px;  }
+ .slfw ul li:nth-of-type(2n+1){background: rgb(238,250,255)}
+ .slfw ul li:nth-of-type(2n+2){background: rgb(245,253,255)}
+ .btn{ text-align: center; margin: 30px 0; }
+ .btn a{ display: inline-block; width: 164px; line-height: 43px; text-align: center; font-size: 18px; color: #fff; background: rgb(0,140,206); text-decoration: none; border-radius: 5px; margin: 0 20px; }
+ .zysx ul{ overflow: hidden; color:#666; }
+ .zysx ul li { float: left; width: 24%; height: 150px; background: #f5f5f5;padding: 0 15px; box-sizing: border-box; margin:0 5px;border: 1px dashed #666;border-radius: 5px;}
+ .zysx ul li h4 { text-align: center; line-height: 55px; font-size: 22px; margin:0; }
+ .zysx ul li p { line-height: 25px; font-size: 14px; margin:0; text-indent:2em; }

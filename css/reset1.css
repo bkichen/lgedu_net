@@ -1,0 +1,103 @@
+ html,
+    body,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    form,
+    input,
+    textarea,
+    select,
+    button,
+    fieldset,
+    legend,
+    img,
+    ul,
+    ol,
+    li,
+    dl,
+    dt,
+    dd,
+    th,
+    td,
+    pre,
+    blockquote {
+      margin: 0px;
+      padding: 0px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: #040404;
+      /*blr: expression(this.onFocus=this.blur())*/
+    }
+    /*去掉a标签的虚线框，避免出现奇怪的选中区域*/
+     
+    a:hover{
+    color: lightred;
+    }
+    
+    html {
+      height:auto;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased
+    }
+    
+
+    
+    body,
+    button,
+    input,
+    select,
+    textarea,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font: 14px "微软雅黑", "Microsoft Yahei", arial, simhei
+    }
+    
+    table {
+      border-collapse: collapse;
+      border-spacing: 0
+    }
+    
+    img,
+    fieldset {
+      border: 0;
+      vertical-align: middle
+    }
+    
+    ul,
+    li,
+    ol {
+      list-style: none
+    }
+    
+    em,
+    i {
+      font-style: normal
+    }
+    
+    iframe {
+      display: block
+    }
+    
+    .clear {
+      display: block;
+      overflow: hidden;
+      clear: both;
+      height: 0;
+      line-height: 0;
+      font-size: 0;
+    }
+    
+    .textcent {
+      text-align: center
+    }

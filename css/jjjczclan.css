@@ -1,0 +1,129 @@
+body {
+    /* background: #fff4d1; */
+	background: #fff4d1;
+    font-family: "宋体";
+}
+
+a{
+	color: #000;
+}
+.wrap{
+	width: 900px;
+	margin: 0 auto;
+	background: #fff;
+}
+.header{
+
+	height: 140px;
+
+    background: url(../images/jjjczpic.jpg) repeat-x top center #fff;
+background-size: 100%;
+}
+/*
+.titpic{
+    display: flex;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+} */
+.nav{
+
+	height: 35px;
+	background-color:#e62902 ;
+}
+.nav ul{
+	display: flex;
+	flex-wrap: wrap;
+}
+.nav ul li{
+	line-height: 35px;
+	font-size: 18px;
+	padding: 0 10px;
+	border-right: 1px #ccc solid;
+}
+.nav ul li a{
+	color: #fff;
+	font-weight: 400;
+	display: block;
+	width: 100%;
+}
+.nav ul li a:hover{
+	color: orange;
+}
+
+.nav ul li span{
+	border: 1px #ccc solid;
+}
+
+
+.siteMap{
+    width: 100%;
+    padding: 10px 0;
+
+}
+.siteMap span{
+    font-size: 16px;
+    padding-left: 20px;
+    display: block;
+}
+
+.cont{
+    /* border: 1px #ccc solid; */
+    min-height: 500px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.cont ul{
+    padding:0 15px;
+}
+.cont li{
+    height: 36px;
+    line-height: 36px;
+    padding-left: 18px;
+    background: url(../images/btn05.jpg) no-repeat left center;
+    font-size: 18px;
+    border-bottom: 1px #dbdbdb dashed;
+}
+.cont ul span{
+    float: right;
+    color: #ccc;
+}
+.Line{
+    border-bottom: 1px #d2d2d2 solid;
+    margin: 30px 0;
+}
+.page {
+    overflow: hidden;
+    text-align: center;
+}
+.page a, .page span {
+    line-height: 34px;
+    color: #666666;
+    background-color: #f1f1f1;
+    padding: 0 11px;
+    margin: 0 2px;
+    display: inline-block;
+    _display: block;
+    _display: inline;
+    text-align: center;
+    font-size: 13px;
+}
+.page .current {
+    background: #e62902;
+    border: 1px solid #e62902;
+    color: #fff !important;
+    font-weight: bold;
+    padding: 0 12px;
+}
+/*  */
+
+
+
+/* 底部 */
+.footer-cent{
+    margin-top: 10px;
+    text-align: center;
+    line-height: 20px;
+    padding: 20px 0;
+    border-top: 2px #e62902  solid;
+}

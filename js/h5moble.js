@@ -1,0 +1,1 @@
+(function(){if(/mobile/ig.test(navigator.userAgent)){var a=document.querySelectorAll('html')[0].className='h5-mobile';}})()

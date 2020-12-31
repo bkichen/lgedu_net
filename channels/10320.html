@@ -1,0 +1,1821 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>[政策解读]-岚皋县市人民政府门户网站群!</title>
+<meta content="webkit" name="renderer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="SiteName" content="岚皋县市人民政府门户网站群!">
+<meta name="SiteDomain" content="www.pds.gov.cn">
+<meta name="SiteIDCode" content="4104000031">
+<meta name="ColumnName" content="政策解读">
+<meta name="ColumnDescription" content="">
+<meta name="ColumnKeywords" content="">
+<meta name="ColumnType" content="政策解读">
+
+<link rel="stylesheet" type="text/css" href="../css/m_index.css">
+<link type="text/css" rel="stylesheet" href="../css/top.css">
+<link type="text/css" rel="stylesheet" href="../css/bottom.css">
+<link type="text/css" rel="stylesheet" href="../css/channel.css">
+<link rel="stylesheet" type="text/css" href="../css/weui.min.css">
+<link rel="stylesheet" type="text/css" href="../icon/iconfont.css">
+<link rel="stylesheet" type="text/css" href="../fontawesome/css/all.min.css">
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/juheweb.js"></script>
+<script type="text/javascript" src="../js/m_common.js"></script>
+<script type="text/javascript" src="../js/zepto.min.js"></script>
+<script>var $pageInfo = {publishmentSystemID : 1, channelID : 10320, contentID : 0, siteUrl : "", homeUrl : "/home", currentUrl : "/channels/10320.html", rootUrl : "", apiUrl : "/api"};</script><script type="text/javascript" src="/js/kb.js"></script></head>
+<body>
+
+<script language="JavaScript">
+function stltree_isNull(obj){
+	if (typeof(obj) == 'undefined')
+	  return true;
+	  
+	if (obj == undefined)
+	  return true;
+	  
+	if (obj == null)
+	  return true;
+	 
+	return false;
+}
+
+//取得Tree的级别，1为第一级
+function stltree_getTreeLevel(e) {
+	var length = 0;
+	if (!stltree_isNull(e)){
+		if (e.tagName == 'TR') {
+			length = parseInt(e.getAttribute('treeItemLevel'));
+		}
+	}
+	return length;
+}
+
+function stltree_closeAllFolder(){
+	if (stltree_isNodeTree){
+		var imgCol = document.getElementsByTagName('IMG');
+		if (!stltree_isNull(imgCol)){
+			for (x=0;x<imgCol.length;x++){
+				if (!stltree_isNull(imgCol.item(x).getAttribute('src'))){
+					if (imgCol.item(x).getAttribute('src') == '/sitefiles/assets/tree/openedfolder.gif'){
+						imgCol.item(x).setAttribute('src', '/sitefiles/assets/tree/folder.gif');
+					}
+				}
+			}
+		}
+	}
+
+	var aCol = document.getElementsByTagName('A');
+	if (!stltree_isNull(aCol)){
+		for (x=0;x<aCol.length;x++){
+			if (aCol.item(x).getAttribute('isTreeLink') == 'true'){
+				aCol.item(x).style.fontWeight = 'normal';
+			}
+		}
+	}
+}
+
+function stltree_openFolderByA(element){
+	stltree_closeAllFolder();
+	if (stltree_isNull(element) || element.tagName != 'A') return;
+
+	element.style.fontWeight = 'bold';
+
+	if (stltree_isNodeTree){
+		for (element = element.previousSibling;;){
+			if (element != null && element.tagName == 'A'){
+				element = element.firstChild;
+			}
+			if (element != null && element.tagName == 'IMG'){
+				if (element.getAttribute('src') == '/sitefiles/assets/tree/folder.gif') break;
+				break;
+			}else{
+				element = element.previousSibling;
+			} 
+		}
+		if (!stltree_isNull(element)){
+			element.setAttribute('src', '/sitefiles/assets/tree/openedfolder.gif');
+		}
+	}
+}
+
+function stltree_getTrElement(element){
+	if (stltree_isNull(element)) return;
+	for (element = element.parentNode;;){
+		if (element != null && element.tagName == 'TR'){
+			break;
+		}else{
+			element = element.parentNode;
+		} 
+	}
+	return element;
+}
+
+function stltree_getImgClickableElementByTr(element){
+	if (stltree_isNull(element) || element.tagName != 'TR') return;
+	var img = null;
+	if (!stltree_isNull(element.childNodes)){
+		var imgCol = element.getElementsByTagName('IMG');
+		if (!stltree_isNull(imgCol)){
+			for (x=0;x<imgCol.length;x++){
+				if (!stltree_isNull(imgCol.item(x).getAttribute('isOpen'))){
+					img = imgCol.item(x);
+					break;
+				}
+			}
+		}
+	}
+	return img;
+}
+
+//显示、隐藏下级目录
+function stltree_displayChildren(element){
+	if (stltree_isNull(element)) return;
+
+	var tr = stltree_getTrElement(element);
+
+	var img = stltree_getImgClickableElementByTr(tr);//需要变换的加减图标
+
+	if (!stltree_isNull(img) && img.getAttribute('isOpen') != null){
+		if (img.getAttribute('isOpen') == 'false'){
+			img.setAttribute('isOpen', 'true');
+            var iconMinusUrl = img.getAttribute('src').replace('plus','minus');
+            img.setAttribute('src', iconMinusUrl);
+		}else{
+            img.setAttribute('isOpen', 'false');
+            var iconPlusUrl = img.getAttribute('src').replace('minus','plus');
+            img.setAttribute('src', iconPlusUrl);
+		}
+	}
+
+	var level = stltree_getTreeLevel(tr);//点击项菜单的级别
+	
+	var collection = new Array();
+	var index = 0;
+
+	for ( var e = tr.nextSibling; !stltree_isNull(e) ; e = e.nextSibling) {
+		if (!stltree_isNull(e) && !stltree_isNull(e.tagName) && e.tagName == 'TR'){
+		    var currentLevel = stltree_getTreeLevel(e);
+		    if (currentLevel <= level) break;
+		    if(e.style.display == '') {
+			    e.style.display = 'none';
+		    }else{//展开
+			    if (currentLevel != level + 1) continue;
+			    e.style.display = '';
+			    var imgClickable = stltree_getImgClickableElementByTr(e);
+			    if (!stltree_isNull(imgClickable)){
+				    if (!stltree_isNull(imgClickable.getAttribute('isOpen')) && imgClickable.getAttribute('isOpen') =='true'){
+					    imgClickable.setAttribute('isOpen', 'false');
+                        var iconPlusUrl = imgClickable.getAttribute('src').replace('minus','plus');
+                        imgClickable.setAttribute('src', iconPlusUrl);
+					    collection[index] = imgClickable;
+					    index++;
+				    }
+			    }
+		    }
+        }
+	}
+	
+	if (index > 0){
+		for (i=0;i<=index;i++){
+			stltree_displayChildren(collection[i]);
+		}
+	}
+}
+var stltree_isNodeTree = true;
+</script>
+
+
+<!--最外层容器 start-->
+<div id="all">
+<script src="../js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../js/accessible.js" type="text/javascript"></script>
+<div id="top_bar">
+    <div class="top_all">
+        <div class="a-top">欢迎访问岚皋县市人民政府门户网站群！ <script src="../sitefiles/assets/scripts/datestring.js" type="text/javascript"></script><script language="javascript" type="text/javascript">RunGLNL(true);</script>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本网站已支持IPV6</div>
+        <div class="b-top">
+            <span><a id="accessible" href="javascript:">无障碍</a>|
+                <script type="text/javascript">        //无障碍
+                    initAccessible(document.querySelector("body"), document.querySelector("#accessible"));
+                </script>
+            </span>
+            <a id="wjwl" name="wjwl">繁体版</a><script language="Javascript" src="../js/gb2big5.js"></script>|<a href="../app_loading.html" target="_blank">移动版</a>|<a href="../qa.html" target="_blank">智能问答</a>
+        </div>
+    </div>
+</div>
+  <!--中间内容区域 start-->
+  <div id="center">
+  	<!--头部开始 start-->
+       <div id="top">
+       <div class="top_t">
+         <div class="top_tt">
+            <div class="Logo"><img src="../images/2.png"></div>
+            <div class="weather" id="weather"><script src="../js/weather.js"></script></div>
+            <div class="search"><form id="formsub" action="/utils/search.html">
+          <input type="button" id="m_qzjs" value="本站">
+          <input type="hidden" name="isAllSites" id="m_qzjsyy" value="false">
+            <script>
+              var isAllSites = false;
+              var inputSite = document.querySelector('#m_qzjsyy');
+              document.querySelector('#m_qzjs').onclick=function(){
+              if(isAllSites){
+                this.value = '本站';
+              inputSite.value = 'false';
+              isAllSites = false;
+              }else{
+                this.value = '全站';
+              inputSite.value = 'true';
+              isAllSites = true;
+              }
+              console.log(isAllSites);
+              }
+            </script>
+            <input type="text" id="word" class="word" name="word" placeholder="请输入关键字进行搜索">
+            <input type="hidden" id="channelID" name="channelID" value="1">
+            <input type="submit" id="submit" class="submit" value="搜索">
+            </form>
+            <div class="m_srsc">热搜词：<a href="../utils/search-E696B0E586A0E882BAE7828E_.html">新冠肺炎</a><a href="../utils/search-E696B0E586A0E882BAE7828E_.html">疫情防控</a><a href="../utils/search-E696B0E586A0E882BAE7828E_.html">企业复工复产</a><a href="../utils/search-E696B0E586A0E882BAE7828E_.html">营商环境</a>
+            </div>
+          </div>
+          </div>
+          <div class="top_tb">
+            <ul>
+                <li><a href="javascript:;">网站首页</a></li>
+                 
+                <li><a href="3.html">鹰城快讯</a></li>
+                <li><a href="13.html">走进鹰城</a></li>
+                <li class="nav_d"><a href="2144.html">政府信息公开</a></li>
+                <li><a href="javascript:;">政务服务</a></li>
+                <li><a href="2144.html">政民互动</a></li>
+                <li><a href="1049.html">站群导航</a></li>
+                <li><a href="javascript:;">国务院信息</a></li>
+                <li class="nav_date"><script src="../sitefiles/assets/scripts/datestring.js" type="text/javascript"></script><script language="javascript" type="text/javascript">RunGLNL(false);</script></li>
+              </ul>
+          </div>
+       </div> 
+    </div>
+    <!--头部结束 end-->
+<style>
+  .tab_title{ line-height: 50px;font-size: 18px;font-weight: bold;}
+  .tab_title span{ margin: 0 20px; cursor:pointer; }
+  .tab_title span.hov{ border-bottom:2px dotted; }
+  .tab_content>div{ display:none; }
+  .tab_content>div.hov{ display:block; }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/zzsc.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<div class="center_b">
+  <div class="center_left center_xxgk" style="padding-bottom:10px;">
+    <div class="center_leftt">市政府信息公开目录</div>
+    <div class="center_leftbxx">
+      <!-- 代码 开始 -->
+      <div id="firstpane" class="menu_list">
+        <p class="menu_head current">主题分类</p>
+        <div style="display:block" class="menu_body tree">
+          <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+<tr style='display:' treeitemlevel='1'>
+	<td nowrap="">
+		<img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="true" src="../SiteFiles/bairong/icons/tree/tree_minusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市政府信息公开目录</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府领导</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府机构</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市政府常务会议</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>人事任免</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府工作报告</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>建议提案</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>办理总体情况</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>人大代表建议</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政协委员提案</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>三定规定</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>行政权力清单</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>权责清单</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>动态调整情况</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>双随机清单</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>公告公示</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府公报</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政策法规</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府文件</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府办文件</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>规范性文件</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>废止文件</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='' onclick='stltree_openFolderByA(this);' istreelink='true'><font color="red"><strong>政策解读</strong></font></a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>财政信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>预决算公开平台</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府预决算</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>部门预决算</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>部门预算</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2016</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2017</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2018</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2019</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2020</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>部门决算</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2015</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2016</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2017</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2018</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='6'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2019</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>三公经费</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>税务</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>社会信用体系建设</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>信用政策</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>诚信红黑榜</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>诚信双公示</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>审计</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>财政审计</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府采购</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>发展规划</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招考招录</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>社会公益建设</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>公共文化体育</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>就业创业</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大行政决策公开</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>决策公开制度</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>意见征集</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>意见反馈</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大建设项目全生命周期信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>在建项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>岚皋县市城区南水北调供水配套工程项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>龙翔大道西延工程</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>湛河老城区段提档升级工程</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市四馆一中心项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>岚皋县海关技术中心项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市第一人民医院新院区（含市儿童医院）项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市第二人民医院综合病房楼项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市第三人民医院综合病房楼</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市第四十四中学整体重建项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市六中综合教学楼建设项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>中共岚皋县市委党校新校区建设项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='4'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>市第十一中学新建综合教学楼校舍安全改造工程</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='5'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>公共资源配置</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>住房保障</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>土地矿产交易</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>政府采购</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>国有产权交易</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>工程建设项目招投标</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重点建设项目</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准服务信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>批准结果信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>招标投标信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>征收土地信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>重大设计变更信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>施工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>质量安全监督信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>竣工有关信息</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>基本信息</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>公开指南</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusmiddle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>公开年报</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2019年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2018年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2017年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2016年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2015年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2014年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2013年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2012年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2011年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2010年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2009年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_line.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>2008年政府信息公开年度报告</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>公开制度</a>
+	</td>
+</tr>
+
+<tr style='display:' treeitemlevel='2'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" style="cursor:pointer;" onclick="stltree_displayChildren(this);" isopen="false" src="../SiteFiles/bairong/icons/tree/tree_plusbottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>依申请公开</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='../Information/InformationReport.html' onclick='stltree_openFolderByA(this);' istreelink='true'>在线申请</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>表格下载</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_middle.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='javascript:;' onclick='stltree_openFolderByA(this);' istreelink='true'>依申请公开满意度评价</a>
+	</td>
+</tr>
+
+<tr style='display:none' treeitemlevel='3'>
+	<td nowrap="">
+		<img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/empty.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/tree_bottom.gif"><img align="absmiddle" src="../SiteFiles/bairong/icons/tree/folder.gif">&nbsp;<a href='../Information/Information_cx.html' onclick='stltree_openFolderByA(this);' istreelink='true'>依申请公开查询</a>
+	</td>
+</tr>
+</table>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(document).ready(function(){
+        $("#firstpane .menu_body:eq(0)").show();
+        $("#firstpane p.menu_head").click(function(){
+        $(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+        $(this).siblings().removeClass("current");
+        });
+        $("#secondpane .menu_body:eq(0)").show();
+        $("#secondpane p.menu_head").mouseover(function(){
+        $(this).addClass("current").next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("slow");
+        $(this).siblings().removeClass("current");
+        });
+        
+        });
+      </script>
+      <!-- 代码 结束 -->
+    </div>
+  </div>
+  <div class="center_right">
+    <div class="center_rightt">
+      <div class="center_righttl">政策解读</div>
+      <div class="center_righttr">您当前的位置是：首页 >> <a href="">政策解读</a></div>
+    </div>
+    <!--移动端适配-->   
+    <div class="m_page">
+      <!--头部导航-->
+      <div class="m_header">
+        <div class="logo"><img src="../image/topm.png"></div>
+        <div class="right"> 
+          <a class="weui-cell_access weui-cell_link" href="javascript:;" onclick="showDialogBox('#category-box');">
+            <i class="iconfont icon-nav"></i>
+          </a>
+        </div>
+      </div>
+      <!--头部导航-->
+      <div class="gkjs">
+        <form action="/utils/search.html" target="_blank">
+          <table width="100%" border="0" height="46px" style="margin:0xp">
+            <tbody>
+              <tr>
+                <td>信息检索：</td>
+                <td>关键字/词：</td>
+                <td><input style="width:225px; height:25px; float:left; border:1px solid #ccc; outline:medium; margin:0px; padding:0px; background:none;" id="word" type="text" name="word"></td>
+                <td>类型：</td>
+                <td><select name="type" id="type" style="width:225px; height:25px; float:left; border:1px solid #ccc; outline:medium; margin:0px; padding:0px; background:none;">
+                  <option value="title">标题</option>
+                  <option value="content">正文</option>
+                  <option value="DocumentNo">文号</option>
+                  <option value="Identifier">索引号</option>
+                  <option value="Publisher">发布机构</option>
+                  </select>
+                </td>
+                <td><input style=" width:50px; height:25px; margin-top:0px; line-height:25px; background:#cc0001; float:left; text-align:center; font-size:15px; cursor:pointer; color:#FFF;font-family:微软雅黑; border:0px; outline:medium;" id="submit" class="submit" value="搜索" type="submit"></td>
+              </tr>
+            </tbody>
+          </table>
+        <input type="hidden" id="channelID" name="channelID" value="1318"></form>
+      </div>
+      <!--页面内容-->
+      <div class="page__bd">
+        <!--内容列表-->
+        <div class="weui-panel weui-panel_access m_one">
+          <div class="weui-panel__hd  m_Ttitle Sutile">
+            政策解读
+          </div>
+          
+          <div class="tab_title">
+            <span class="hov">文字解读</span>|<span>图表解读</span>
+          </div>
+          <div class="tab_content">
+            <div class="weui-panel__bd hov">
+              <div class="txt-list">
+                <ul>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>图解：《河南省铁路安全管理规定》2021年1月1日起施行</h2>
+                        <div class="note">
+                          <div class="licontent">河南省铁路安全管理规定</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-12-02 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>《岚皋县市失独家庭一次性经济救助办法》 政策解读</h2>
+                        <div class="note">
+                          <div class="licontent">一、为什么修订失独家庭经济救助办法？为贯彻落实《河南省人口与计划生育条例》精神，切实维护我市失独家庭的法定权益，进一步做好失独家庭关爱扶助工作，结合国家、省失独家庭救助工作相关要求……</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-09-25 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>图解：岚皋县市失独家庭一次性经济救助办法</h2>
+                        <div class="note">
+                          <div class="licontent">岚皋县市人民政府关于印发岚皋县市失独家庭一次性经济救助办法的通知</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-09-25 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>图解：岚皋县市加快5G产业发展三年行动计划&#65288;2020-2022年&#65289;</h2>
+                        <div class="note">
+                          <div class="licontent">岚皋县市人民政府办公室关于印发岚皋县市加快5G产业发展三年行动计划（2020—2022年）的通知</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-09-14 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>《岚皋县市加快5G产业发展三年行动计划&#65288;2020-2022年&#65289;》政策解读</h2>
+                        <div class="note">
+                          <div class="licontent">一、出台背景&#160;2020年3月4日，中共中央政治局会议强调，要加快5G网络、数据中心等新型基础设施建设进度。4月28日国务院常务会议指出，要加快信息网络等新型基础设施建设，以“一业带百业”，既助……</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-09-14 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>《岚皋县市煤矸石综合利用管理办法&#65288;试行&#65289;》政策解读</h2>
+                        <div class="note">
+                          <div class="licontent">&#160; 一、出台背景&#160; &#160;&#160;岚皋县因煤兴市，在市北部矿区分布着平煤神马集团13个煤矿和4个洗煤厂，年产煤矸石1243万吨。由于历史原因，煤矸石综合利用管理缺乏统一规划，存在监督管理缺位、堆放场地不……</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-09-07 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>《岚皋县市土地储备管理办法》 政策解读</h2>
+                        <div class="note">
+                          <div class="licontent">一、出台的背景和必要性2013年我市出台《岚皋县市人民政府关于进一步加强市区土地储备工作的实施意见》（平政﹝2013﹞41号），确立了在市区范围内实施土地储备的制度，强化政府对土地市场的调控……</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-08-10 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>图解：岚皋县市推进3岁以下婴幼儿照护服务工作实施方案</h2>
+                        <div class="note">
+                          <div class="licontent">岚皋县市人民政府办公室关于印发岚皋县市推进3岁以下婴幼儿照护服务工作实施方案的通知</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-08-03 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>《岚皋县市推进3岁以下婴幼儿照护服务工作实施方案》政策解读</h2>
+                        <div class="note">
+                          <div class="licontent">&#160; &#160; 一、《实施方案》出台的背景与意义是什么？相关部门问卷调查显示，我市约33%的0—3岁婴幼儿家长表示有入托需求，而调研样本中实际入托率仅为5.55%，婴幼儿照护服务的市场需求非常旺盛，但现……</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-08-03 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                    <li>
+                      <a href="javascript:;">
+                        <h2>图解：岚皋县市人民政府关于进一步做好稳就业工作的实施意见</h2>
+                        <div class="note">
+                          <div class="licontent">岚皋县市人民政府关于进一步做好稳就业工作的实施意见</div>
+                          <p>
+                            <i class="hot Chits">主题分类：政策解读</i>
+                            <i class="date Cdate">日间：2020-07-31 </i>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <div class="center_rightz">
+              <ul>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="http://www.pds.gov.cn/upload/images/2020/12/8/8154043731.jpg" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：《河南省铁路安全管理规定》2021年1月1日起施行" target="_blank">图解：《河南省铁路安全管理规...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="http://www.pds.gov.cn/upload/images/2020/12/10/10152910769.png" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：岚皋县市失独家庭一次性经济救助办法" target="_blank">图解：岚皋县市失独家庭一次性...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="http://www.pds.gov.cn/upload/images/2020/11/9/9105420948.JPG" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：岚皋县市加快5G产业发展三年行动计划&#65288;2020-2022年&#65289;" target="_blank">图解：岚皋县市加快5G产业发展...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="http://www.pds.gov.cn/upload/images/2020/10/10/10114725733.jpg" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：岚皋县市推进3岁以下婴幼儿照护服务工作实施方案" target="_blank">图解：岚皋县市推进3岁以下婴...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="../upload/images/2020/9/23/2316502617.JPG" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：岚皋县市人民政府关于进一步做好稳就业工作的实施意见" target="_blank">图解：岚皋县市人民政府关于进...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="http://www.pds.gov.cn/upload/images/2020/9/21/21165513176.jpg" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="一图读懂2020年岚皋县市政府工作报告" target="_blank">一图读懂2020年岚皋县市政府工...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="../upload/images/2020/10/26/261512259.jpg" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：河南全面推进基层政务公开标准化规范化工作" target="_blank">图解：河南全面推进基层政务公...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="http://www.pds.gov.cn/upload/images/2020/9/24/24113853895.JPG" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="图解：岚皋县市人民政府关于应对疫情支持企业发展稳定经济增长的若干政策意见" target="_blank">图解：岚皋县市人民政府关于应...</a></div>
+                  </li>
+                
+                  <li>
+                    <div class="photo shadow">
+                      <a href="javascript:;" target="_blank"><img src="../upload/images/2020/9/27/2712404868.jpg" height="166" width="220"></a></div>
+                    <div class="titlx"><a href="javascript:;" title="一图看懂：政府做重大决策，你可以这样参与&#65281;" target="_blank">一图看懂：政府做重大决策，你...</a></div>
+                  </li>
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
+        <!--/内容列表-->
+      </div>
+      <!--/页面内容-->
+    </div>
+    <!--——移动端适配-->
+    <div class="paging">                
+       
+        <div class="app">当前第1页&nbsp;&nbsp;共330页</div>
+        <div class="paginator">
+          <span class="page-start">上一页</span>
+          <span class="page-this app">1</span><a href="javascript:;" class="app">2</a><a href="javascript:;" class="app">3</a><a href="javascript:;" class="app">4</a><a href="javascript:;" class="app">5</a><a href="javascript:;" class="app">6</a><a href="javascript:;" class="app">7</a><a href="javascript:;" class="app">8</a><a href="javascript:;" class="app">9</a><a href="javascript:;" class="app">...</a>
+          <a class="page-next" href="javascript:;">下一页</a>
+        </div>
+      
+    </div>
+    <script>
+      (function(){
+      var tabTitle = document.querySelectorAll('.tab_title span');
+      var tabContent = document.querySelectorAll('.tab_content>div');
+      var pageItem = document.querySelector('.paging');
+      console.log(pageItem);
+      var x = 0;
+      for(let i =0; i<tabTitle.length; i++){
+      tabTitle[i].onmouseenter = function(){
+      if(i==0){pageItem.style.display="block";console.log(0)}else{pageItem.style.display="none";console.log(1)}
+      tabTitle[x].classList.remove('hov');
+      tabContent[x].classList.remove('hov');
+      this.classList.add('hov');
+      tabContent[i].classList.add('hov');
+      x = i;
+      }
+      }
+      }());
+      </script>
+      <!--Mobile分页页码-->            
+      <div class="page-list">
+        
+          <span>共3292记录</span>
+          <span class="disabled">«上一页</span>
+          <span class="current">1</span>
+          <a class="page-next" href="javascript:;">下一页</a>
+        
+      </div>
+      <!--/Mobile分页页码-->
+      <!--版权信息-->            
+      <div class="weui-footer footer">
+        <p class="weui-footer__links">
+          <a href="javascript:;" class="weui-footer__link">触屏版</a>
+          <a href="javascript:;" class="weui-footer__link">电脑版</a>
+        </p>
+        <p class="weui-footer__text">河南省岚皋县市人民政府版权所有 政府网站标识码：4104000031</p>
+        <p class="weui-footer__text">ICP证号：豫ICP备05017763号-1 豫公网安备 41040002000001号</p>
+      </div>
+      <!--/版权信息-->
+      </div>
+      </div>
+      </div>
+      <!--中间内容区域结束 end-->
+      </div>
+      <!--最外层容器 end-->
+      <!--底部版权 start-->
+      <div id="bottom">
+  <div class="bottom_bt">
+      <div class="bottom_bt_left"><a href="javascript:;" target="_blank"><img src="../images/timg.png" width="65px" height="75px"></a></div>
+        <div class="bottom_bt_right">
+        <a href="5329.html">关于我们</a> | <a href="5330.html">版权声明</a> | <a href="../contents/5331/71268.html">联系我们</a> | <a href="5332.html">网站地图</a> <br>
+        河南省岚皋县市人民政府版权所有    政府网站标识码：4104000031<br>
+        <a href="javascript:;" target="_blank"> ICP证号：豫ICP备05017763号-1</a>
+        <img src="../images/gaba.png" style="margin-top:-5px; margin-right:5px;"><a href="javascript:;" target="_blank">豫公网安备 41040002000001号</a> 
+        </div>
+        <div class="bottom_bt_ewmwx"></div>
+        <div class="bottom_bt_ewmwb"></div>
+        <div class="jiucuolin">
+        <span id="_span_jiucuo"></span>
+<a href="javascript:;" target="_blank" title="政府网站找错"><img src="../Picture/index_33.png" alt="政府网站找错"></a>
+        <!--<script id="_jiucuo_"  sitecode="4104000031" src="http://pucha.kaipuyun.cn/exposure/jiucuo.js"></script>--></div>
+    </div>
+</div>
+      <!--底部版权 end-->
+      <!--类别容器-->
+      <div id="category-box" class="dialog-wrap">
+        <div class="dialog-box">
+          <div class="m_header">
+            <a class="back" href="javascript:;" onclick="closeDialogBox('#category-box');">
+              <i class="iconfont icon-arrow-left"></i>
+            </a>
+            <h3>栏目导航</h3>
+          </div>
+          <ul class="navbar">
+            <li>
+              <h3>鹰城快讯</h3> 
+              <p>
+                <a href="4.html">鹰城要闻</a>
+                <a href="5.html">领导活动</a>
+                <a href="2144.html">区县动态</a>
+                <a href="javascript:;">部门动态</a>
+              </p>
+            </li>
+            <li>
+              <h3>走进鹰城</h3> 
+              <p>
+                <a href="javascript:;">城市概况</a>
+                <a href="javascript:;">城市发展</a>
+                <a href="30.html">视听鹰城</a>
+                <a href="29.html">图文鹰城</a>
+              </p>
+            </li>
+            <li>
+              <h3>信息公开</h3> 
+              <p>
+                <a href="javascript:;">公告公示</a>
+                <a href="javascript:;">政府文件</a>
+                <a href="javascript:;">政府办文件</a>
+                <a href="">政策解读</a>
+                <a href="javascript:;">政府领导</a>
+              </p>
+            </li>
+            <li>
+              <h3>互动交流</h3> 
+              <p>
+                <a href="javascript:;">市长信箱</a>
+                <a href="javascript:;">部门信箱</a>
+                <a href="12719.html">优化营商环境企业投诉平台</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--类别容器-->
+      </body>
+      
+      </html>
+<script src="../sitefiles/assets/tracker/script.js" type="text/javascript"></script>
+<script type="text/javascript">AddTrackerCount('/api/stl/actions/add_tracker_count/1/10320/0', 1);</script>
+
+      
+      
+      

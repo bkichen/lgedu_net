@@ -1,0 +1,54 @@
+  .box-wrap{
+       width: 1180px;
+       margin: 0 auto;
+       margin-top: 15px;
+   }
+   .box-wrap .hd{
+        background: #ededed;
+        border: none;
+        font-size: 14px;
+        line-height: 20px;
+   }
+   .box-wrap .hd h1{
+        padding-left: 30px;
+        display: inline-block;
+        background: url(../images/category.png) 10px no-repeat  #255CAA;
+        background-size:30px; 
+        border-radius: 3px;
+        font-size:19px;
+   }
+   .box-wrap .hd span{
+        padding: 10px 25px;
+        color: #f3f5f7;
+        display: inline-block;
+
+   }
+   .box-wrap ul{
+        overflow: hidden;
+        min-height: 260px;
+   }
+   .box-wrap ul li{
+        float: left;
+        width: 16.6%;
+        text-align: center;
+        margin-top: 10px;
+   }
+   .box-wrap .bd{
+        padding: 10px 5px;
+   }
+   .box-wrap .bd  a{
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        background: #F9F9F9;
+        color: #222;
+        border: 1px solid #EEEEEE;
+        margin: 0 5px;
+        border-radius: 4px;
+   }
+
+   .box-wrap .bd a:hover{
+        background: #255CAA;
+        color: #fff;
+        border-color: #255CAA;
+   }

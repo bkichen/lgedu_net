@@ -1,0 +1,15 @@
+
+/*
+ *   Author: 青涩牧童
+ *   version：1.1.0 Index
+ *   Date：2016年01月15日 平顶山市人民政府专用
+ */
+.menu_list{width:213px;}
+.menu_head{width:186px;height:45px;line-height:45px;padding-left:25px;font-size:15px;color:#666;cursor:pointer;border:1px solid #ccc;position:relative; background:#FFF url(../images/pro_left.png) center right no-repeat;margin:0; margin-top:5px;}
+.menu_list .current{width:100%; background:#FFF url(../images/pro_down.png) center right no-repeat; border:1px solid #ccc; border-left:3px solid #cc0001; border-right:3px solid #cc0001; color:#da4042; }
+.menu_body{width:211px;min-height:auto; max-height:740px; overflow:auto;line-height:30px;border-left:1px solid #ccc;backguound:#fff;border-right:1px solid #ccc; border-bottom:1px solid #ccc; margin-bottom:5px;}
+.menu_body a{color:#666;background:#fff url(../images/DocumentStack.png) 10px 13px no-repeat; font-size:12px;}
+.tree a{color:#666;background:#fff; font-size:12px;}
+.menu_body a:hover{text-decoration:none;}
+.tcfl{display:block; width:181px;height:38px;line-height:38px;padding-left:30px;color:#777777;background:#fff;text-decoration:none;border-bottom:1px solid #e1e1e1; }
+.tcflzd{display:block; width:193px;height:38px;line-height:38px;padding-left:30px;color:#777777;background:#fff;text-decoration:none;border-bottom:1px solid #e1e1e1; }/**重点信息公开组栏目样式**/

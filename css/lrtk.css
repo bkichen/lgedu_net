@@ -1,0 +1,55 @@
+/* CSS Document */
+
+/*
+ *   Author: 青涩牧童
+ *   version：1.1.0 Index
+ *   Date：2016年01月15日 平顶山市人民政府专用
+ */
+.row-content{ width:568px; text-align:left; clear:both}
+.showcase.cloud{ position:relative; height:267px}
+.showcase.cloud .container{ width:568px; height:267px; overflow:hidden; position:relative}
+.showcase.cloud .slide{ position:absolute; top:0; left:0; z-index:0; width:568px; height:267px}
+.showcase.cloud .slide .content-main-visual{ width:448px; height:267px; overflow:hidden; position:relative}
+.showcase.cloud .slide .content-main-visual a{ display:none; width:448px; height:267px; overflow:hidden; position:absolute; z-index:0; top:0; left:0;}
+.showcase.cloud .slide .content-main-visual a.pc{ display:block}
+.showcase.cloud .slide .content-main-visual a.tablet{ display:none}
+.showcase.cloud .slide .content-main-visual a.smartphone{ display:none}
+.showcase.cloud .slide .content-main-visual a img{ width:448px; height:267px;position:relative;}
+.showcase.cloud .slide .content-main-visual a span{width:428px; height:35px; font-size:15px; color:#fff; z-index:9; position:absolute; bottom:0px; line-height:35px; background-color:rgba(0,0,0,0.40);padding-left:20px;}
+
+.showcase.cloud .slide .content-main-feature{ height:267px; width:119px; position:absolute; top:0; left:449px}
+.showcase.cloud .slide .content-main-feature .feature{ width:118px; height:66px; position:relative; margin-bottom:1px; overflow:hidden}
+.showcase.cloud .slide .content-main-feature .feature a{ padding-top:0; display:block; width:119px; height:66px; position:relative; background-image:none; opacity:0.4; filter:alpha(opacity=40); color:#000}
+.showcase.cloud .slide .content-main-feature .feature a:hover{ background-image:none}
+.showcase.cloud .slide .content-main-feature .feature a:hover{ opacity:1; filter:alpha(opacity=100)}
+.showcase.cloud .slide .content-main-feature .feature a.current{ background:none}
+.showcase.cloud .slide .content-main-feature .feature a img{ position:absolute; width:119px; height:66px;}
+.showcase.cloud .slide .content-main-feature .feature a img.tablet{ display:none}
+.showcase.cloud .slide .content-main-feature .feature a img.mobile{ display:none}
+
+.showcase.cloud .slide .content-main-feature .azure{ background-color:transparent}
+.showcase.cloud .slide .content-main-feature .brick{ background-color:transparent}
+.showcase.cloud .slide .content-main-feature .gray{ background-color:transparent}
+.showcase.cloud .slide .content-main-feature .green { background-color:transparent}
+.showcase.cloud .slide .content-main-feature .dark-azure{ background-color:#0088C4}
+.showcase.cloud .slide .content-main-feature .dark-brick{ background-color:#6F0B01}
+.showcase.cloud .slide .content-main-feature .dark-gray{ background-color:#272727}
+.showcase.cloud .slide .content-main-feature .dark-green{ background-color:#308900}
+
+.showcase.cloud .slide .content-main-feature .azure a{ background-color:#49b8da}
+.showcase.cloud .slide .content-main-feature .brick a{ background-color:#A83513}
+.showcase.cloud .slide .content-main-feature .gray a{ background-color:#646464}
+.showcase.cloud .slide .content-main-feature .green a{ background-color:#85bb23}
+
+.showcase.cloud .slide .content-main-feature .azure a:hover, .showcase.cloud .slide .content-main-feature .azure a.current{ background-color:#75C3EF; color:#fff}
+.showcase.cloud .slide .content-main-feature .azure a:hover span, .showcase.cloud .slide .content-main-feature .azure a.current span{ background-color:#75C3EF; color:#fff}
+.showcase.cloud .slide .content-main-feature .brick a:hover, .showcase.cloud .slide .content-main-feature .brick a.current{ background-color:#A83513; color:#fff}
+.showcase.cloud .slide .content-main-feature .brick a:hover span, .showcase.cloud .slide .content-main-feature .brick a.current span{ background-color:#A83513; color:#fff}
+.showcase.cloud .slide .content-main-feature .gray a:hover, .showcase.cloud .slide .content-main-feature .gray a.current{ background-color:#646464; color:#fff}
+.showcase.cloud .slide .content-main-feature .gray a:hover span, .showcase.cloud .slide .content-main-feature .gray a.current span{ background-color:#646464; color:#fff}
+.showcase.cloud .slide .content-main-feature .green a:hover, .showcase.cloud .slide .content-main-feature .green a.current{ background-color:#6FBB00; color:#fff}
+.showcase.cloud .slide .content-main-feature .green a:hover span, .showcase.cloud .slide .content-main-feature .green a.current span{ background-color:#6FBB00; color:#fff}
+
+.showcase.cloud .slide .content-main-feature .feature a.current{ opacity:1; filter:alpha(opacity=100)}
+.showcase.cloud .slide .content-main-feature .feature a .timerLine{ display:none; position:absolute; left:0; bottom:0; width:122px; height:2px}
+.showcase.cloud .slide .content-main-feature .feature a.current .timerLine{ display:block}

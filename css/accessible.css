@@ -1,0 +1,89 @@
+        .accessible-body{
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        min-width: 1000px;
+        text-align: right;
+        padding: 4px 0;
+        font-size: 14px;
+        background-color: #f3f3f3 !important;
+        border-bottom: 1px solid #ddd;
+        }
+        .accessible-body span{
+        display: inline-block;
+        padding: 0 10px;
+        margin-left: 6px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f3f3f3 !important;
+        line-height: 24px;
+        color: #444 !important;
+        cursor: pointer;
+        }
+        .main-wrap{
+        margin:0px auto;
+        width:1000px;
+        }
+        .accessible-wrap{
+        display: none;
+        /* margin-top: 35px; */
+        position: fixed;
+        z-index: 10000;
+        }
+        .box-leadermail > span {
+        display: block;
+        padding: 0 0 0 25px;
+        line-height: 56px;
+        color: #888;
+        }
+        .box-leadermail > a {
+        float: right;
+        display: block;
+        padding-right: 25px;
+        font-size: .75em;
+        line-height: 56px;
+        color: #888;
+        font-family: Simsun;
+        }
+        .box-leadermail > a:hover {
+        text-decoration: underline;
+        }
+        .lm-table thead td {
+        text-align: center;
+        font-size: 12px;
+        color: #888;
+        line-height: 42px;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        background-color: #f4f4f4;
+        }
+        .lm-table {
+        table-layout: fixed;
+        width: 100%;
+        }
+        .lm-table thead td:first-child {
+        text-align: left;
+        padding-left: 25px;
+        }
+        
+        .lm-table tbody td {
+        text-align: center;
+        font-size: .75em;
+        color: #888;
+        line-height: 32px;
+        }
+        .lm-table tbody td a {
+        color: #888;
+        text-decoration: none;
+        }
+        .lm-table tbody td a:hover {
+        text-decoration: underline;
+        }
+        .lm-table tbody td:first-child {
+        text-align: left;
+        font-size: .875em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 25px;
+        }

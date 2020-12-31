@@ -1,0 +1,105 @@
+.articleContent{
+	overflow: hidden;
+    text-align: left;
+
+}
+.printArea .title {
+    color: #000;
+    font-size: 28px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.printArea .articleInfo {
+    font-size: 14px;
+    margin-bottom: 45px;
+    padding: 16px 10px;
+    text-align: center;
+    color: #777;
+    border-bottom: 1px dashed #ddd;
+}
+.printArea .articleInfo span {
+    padding: 0 5px;
+}
+.printArea .contentTxt {
+    color: #333;
+    font-size: 18px;
+    line-height: 2;
+    padding: 0 0 20px 0;
+    overflow: hidden;
+}
+.printArea .contentTxt p{
+	line-height: 1.5em;
+	text-indent: 2em;
+	margin-bottom: 20px;
+}
+.print_tool {
+    margin: 5px 0;
+}
+.articlePiece {
+    padding: 10px 0;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.print_tool a {
+    display: block;
+    font-size: 14px;
+    color: #000;
+    float: right;
+    font-weight: 600;
+}
+.articlePiece .prev, .articlePiece .next {
+    line-height: 30px;
+    display: flex;
+}
+.articlePiece span {
+    font-weight: bold;
+}
+.articlePiece a {
+    display: block;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #ccc;
+}
+#part7 ul{text-align: left;}
+
+ .page{text-align: left;}
+
+.stl_no .weui-msg{
+    padding: 20px;
+}
+#part7 ul p{padding:0;}
+.navtitle{
+    width: 1180px;
+    margin: 0 auto;
+
+}
+.cont{
+    padding: 10px;
+    box-sizing: border-box;
+}
+.navtitle ul {
+    display: flex;
+    background: #fff;
+    margin-bottom: 5px;
+}
+.navtitle a{
+    flex:1;
+}
+.navtitle ul li{
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    transition: all 1s;
+}
+.navselectd {
+    background: #005090;
+    color: #FFF;
+}
+.navtitle li:hover {
+    background:#005090;
+    color: #FFF;
+}

@@ -1,0 +1,47 @@
+/* 这个css文件，只写网页样式重置的样式   也可以命名为 base.css */
+
+/* 星号找所有的标签，性能偏差   为了提高性能，可以把所有自带margin和padding的标签写出来，重置为0*/
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img{
+	margin: 0;
+	padding: 0;
+}
+img{
+	vertical-align: bottom;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight: normal;
+}
+body{
+	font: 12px/1.5 "微软雅黑";
+}
+
+
+.clear{
+	clear: both;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clearfix::after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	clear: both;
+	
+}
+input,button,textarea{
+	outline: none;
+}
+.hidden{
+	display: none;
+}
